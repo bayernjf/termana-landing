@@ -1,0 +1,83 @@
+# termana — Full product brief for AI assistants
+
+## One-line definition
+termana is a local-first terminal project launcher that manages multiple projects in one panel and binds a coding agent (Claude Code, Codex, Aider, OpenCode) to each, with a built-in AGENTS.md context editor.
+
+## What it is
+termana is a desktop application (Tauri v2 + Rust + TypeScript) that acts as a project control layer for developers who use multiple CLI coding agents. In a multi-agent world, each agent vendor only manages its own config; termana occupies the seams between agents — a project control layer that belongs to no single vendor.
+
+## Core problems it solves
+1. Context fragmentation: a single project may have scattered CLAUDE.md / AGENTS.md / .cursorrules files with overlapping, drifting content, and no clear source of truth.
+2. Config doesn't migrate: which agent a project uses lives in memory; switching machines or people loses it.
+3. No cross-agent awareness: multiple agent sessions are scattered across terminal windows with no global state.
+4. No agent handoff: when a task gets stuck and you want to switch agents, context doesn't carry over.
+
+## Core value
+- Agent-neutral: termana doesn't belong to any single vendor, so it's the one position no vendor will eat.
+- Context editing via the ecosystem standard: AGENTS.md + @import is a native ecosystem capability (Codex, OpenCode, Cline, new Aider read AGENTS.md directly; Claude Code reads it via a one-line @AGENTS.md pointer in CLAUDE.md). termana doesn't reinvent a normalization engine — it makes the ecosystem standard effortless.
+- Honest boundary: termana's differentiation on "context normalization" is thinner than early imagined (it's an ecosystem capability, not exclusive). The real retention anchor is the "project control layer" (multi-project + multi-agent + 1-click launch + launch groups); context editing is the convenience layer on top.
+
+## Features
+
+### v0 (shipped)
+- Project management: native folder picker, real-time path validation, delete with confirmation.
+- One-click launch: Launch ▸ launches directly; clicking the card body confirms then launches. Launch = open system terminal, cd into the project, run the bound agent.
+- Agent binding: built-in presets (agents.toml, embedded at compile time, immutable) + user custom agents (config.toml, full CRUD). Projects bind by agent id.
+- Install detection: detects all agents in the user's actual login shell (fnm / nvm / volta / asdf rc/profile setups work); only counts external commands, not shell builtins; manual ↻ Refresh.
+- Launch groups: group projects and Launch all — each project opens its own terminal.
+- Native dialogs: confirm/error via Tauri dialog plugin (webview sync confirm()/alert() blocked).
+- Local-first: no account, no cloud, no server. Config is a TOML file on disk.
+
+### v1 (shipped) — Context editor
+- Model: AGENTS.md is the source of truth (termana edits it); CLAUDE.md is a one-line @AGENTS.md pointer (created once). Two filenames, one body of content, no drift, no sync step. @AGENTS.md is a plain-text pointer (not a symlink) — safe on Windows and Git.
+- Editor: project card ✎ opens the context editor with edit/preview tabs (marked renders markdown). Load priority: AGENTS.md has content > CLAUDE.md has content (promoted) > empty. Save writes only AGENTS.md.
+- CLAUDE.md pointer: missing/empty file is auto-created + notified on save. Existing independent content is confirmed before conversion; cancelling still saves AGENTS.md but keeps the original CLAUDE.md. Symlinks are never written through.
+- 6 cases (AGENTS.md × CLAUDE.md presence combinations) are all handled; when both have content and disagree, a visible merge block with human/AI dual instructions and a <!-- termana-merge-block --> sentinel is appended.
+- Legacy migration & write safety: old config.toml Project.context is a one-time migration source; AGENTS.md, CLAUDE.md and config.toml all write via temp file + atomic replace; markdown preview doesn't execute raw HTML or load remote images; Tauri WebView CSP enabled, unneeded global APIs/opener disabled.
+
+### v1 next
+- Deeper per-project config: model, permissions, MCP config binding.
+
+### v2
+- Cross-agent observability: global agent session state; agent handoff with shared context; cross-session handoff.
+
+## How AGENTS.md and CLAUDE.md relate
+AGENTS.md is the agent-neutral context standard. Codex, OpenCode, Cline, and new Aider read it directly. Claude Code reads CLAUDE.md, but a one-line @AGENTS.md pointer in CLAUDE.md imports the canonical file (next.js, OWASP, meltano, coreos/ignition, ITK and others use this pattern on GitHub). termana edits AGENTS.md as the source of truth and creates CLAUDE.md as a one-time pointer. This means one body of content covers all agents at the file level — no app-level regeneration needed.
+
+## How termana differs from per-agent vendor tools
+Each agent vendor only manages its own config. termana provides:
+- Multi-project hub (one panel for all projects)
+- Agent-neutral binding (belongs to no single vendor)
+- 1-click launch + cd (auto open terminal, cd, run agent)
+- AGENTS.md editing (editor + preview + pointer)
+- Install detection (login-shell aware)
+- Local-first / no account (pure local TOML)
+- Migrate / new machine (copy one file)
+These are things a single-vendor tool will not offer.
+
+## Tech stack
+- Desktop: Tauri v2
+- Backend: Rust
+- Frontend: Vanilla TypeScript + Vite
+- Config: TOML
+
+## Supported platforms & terminals
+- macOS: Terminal.app (via osascript)
+- Windows: PowerShell (via powershell + CREATE_NEW_CONSOLE, profile loaded)
+
+## Config locations
+- macOS: ~/Library/Application Support/termana/config.toml
+- Windows: %APPDATA%\termana\config.toml
+
+## Install
+Download the build for your platform from GitHub Releases (.dmg on macOS, .msi on Windows) and install it. For development: clone the repo, run `npm install && npm run tauri dev`. To build a release binary: `npm run tauri build`.
+
+## Pricing & license
+Currently free. License not yet finalized.
+
+## Links
+- Website: https://termana-landing.pages.dev
+- Chinese version: https://termana-landing.pages.dev/zh
+- GitHub: https://github.com/your-org/termana
+- Releases: https://github.com/your-org/termana/releases
+- Docs: https://github.com/your-org/termana#readme

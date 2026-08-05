@@ -1,0 +1,33 @@
+# termana
+
+> termana is a local-first terminal project launcher that manages multiple projects in one panel and binds a coding agent (Claude Code, Codex, Aider, OpenCode) to each, with a built-in AGENTS.md context editor.
+
+termana is a terminal project launcher for people who live in the terminal. Manage multiple projects, bind a coding agent to each, and launch with one click — the terminal opens, cds into the project, and starts the agent. It also ships a context editor for AGENTS.md, the agent-neutral context standard.
+
+## Key facts
+- Local-first: no account, no cloud, no server. Config is a TOML file on disk.
+- Agent-neutral: each CLI agent vendor only manages its own config; termana sits in the seams between agents — a project control layer that belongs to no single vendor.
+- Platforms: macOS (Terminal.app via osascript), Windows (PowerShell with CREATE_NEW_CONSOLE, profile loaded).
+- Install detection runs in the user's login shell, so fnm / nvm / asdf / volta setups are detected.
+- Supported agents: Claude Code, Codex, Aider, OpenCode (built-in presets + custom agents).
+- AGENTS.md is the source of truth; CLAUDE.md becomes a one-line @AGENTS.md pointer. Two filenames, one body of content, no drift, no sync.
+- License: not yet finalized. Currently free.
+- Tech stack: Tauri v2 (desktop), Rust (backend), Vanilla TypeScript + Vite (frontend), TOML (config).
+
+## Install
+Download the build for your platform from GitHub Releases (.dmg on macOS, .msi on Windows) and install. For development: clone the repo, run `npm install && npm run tauri dev`.
+
+## Sections
+- [Features](https://termana-landing.pages.dev/#features)
+- [Compare with per-agent tools](https://termana-landing.pages.dev/#compare)
+- [AGENTS.md context editor](https://termana-landing.pages.dev/#context)
+- [Download](https://termana-landing.pages.dev/#download)
+- [FAQ](https://termana-landing.pages.dev/#faq)
+- [Roadmap](https://termana-landing.pages.dev/#roadmap)
+- [中文版](https://termana-landing.pages.dev/zh)
+
+## Links
+- Website: https://termana-landing.pages.dev
+- GitHub: https://github.com/your-org/termana
+- Releases: https://github.com/your-org/termana/releases
+- Docs: https://github.com/your-org/termana#readme

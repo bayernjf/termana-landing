@@ -1,0 +1,3 @@
+# Cloudflare Pages 重定向规则
+# /zh/ 末尾斜杠统一
+/zh/  /zh  302
