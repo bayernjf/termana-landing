@@ -1,0 +1,63 @@
+---
+import { getLangFromUrl, t } from '../i18n/ui';
+import { SITE, APP } from '../i18n/site';
+
+const lang = getLangFromUrl(Astro.url);
+// 一句话产品定义 — GEO 关键：页面里至少出现一次完整定义句，便于 AI 抓取
+const oneLiner = APP.oneLiner[lang];
+---
+
+<section class="relative overflow-hidden">
+  <div class="container-page pt-20 pb-16 sm:pt-28 sm:pb-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-flex items-center gap-2 rounded-full border border-ink-700 bg-ink-900/60 px-3 py-1 text-xs font-medium text-accent backdrop-blur">
+        <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+        {t(lang, 'hero.badge')}
+      </span>
+
+      <h1 class="mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+        {t(lang, 'hero.title')}
+      </h1>
+
+      <p class="mt-6 text-lg leading-relaxed text-ink-300">
+        {t(lang, 'hero.subtitle')}
+      </p>
+
+      <!-- GEO: 完整产品定义句，给 AI 引擎摘录用 -->
+      <p class="sr-only">{oneLiner}</p>
+
+      <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href="#download" class="btn-primary w-full sm:w-auto">
+          {t(lang, 'hero.cta.download')}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </a>
+        <a href={SITE.repo} target="_blank" rel="noopener" class="btn-secondary w-full sm:w-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          {t(lang, 'hero.cta.viewSource')}
+        </a>
+      </div>
+
+      <p class="mt-6 text-sm text-ink-400">{t(lang, 'hero.platforms')}</p>
+    </div>
+
+    <!-- 终端预览 -->
+    <div class="mx-auto mt-16 max-w-3xl">
+      <div class="overflow-hidden rounded-xl border border-ink-800 bg-ink-900/80 shadow-2xl shadow-ink-950/50 backdrop-blur">
+        <div class="flex items-center gap-2 border-b border-ink-800 bg-ink-900 px-4 py-2.5">
+          <span class="h-3 w-3 rounded-full bg-red-500/80"></span>
+          <span class="h-3 w-3 rounded-full bg-yellow-500/80"></span>
+          <span class="h-3 w-3 rounded-full bg-green-500/80"></span>
+          <span class="ml-3 font-mono text-xs text-ink-400">termana</span>
+        </div>
+        <pre class="overflow-x-auto p-5 font-mono text-xs leading-relaxed text-ink-200 sm:text-sm"><code><span class="text-accent">$</span> termana launch my-app
+<span class="text-ink-400">→ opening terminal · cd ~/projects/my-app · agent: claude</span>
+
+<span class="text-accent">claude</span> <span class="text-ink-500">Claude Code v1.x</span>
+> Reading AGENTS.md...
+> Project context loaded. Ready.
+
+<span class="text-ink-600"># termana bound: claude · AGENTS.md synced · 1-click launch</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>

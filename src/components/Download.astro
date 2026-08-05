@@ -1,0 +1,77 @@
+---
+import { getLangFromUrl, t } from '../i18n/ui';
+import { SITE } from '../i18n/site';
+const lang = getLangFromUrl(Astro.url);
+const isZh = lang === 'zh';
+---
+
+<section id="download" class="section bg-ink-900/30">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="eyebrow">{isZh ? '下载' : 'Download'}</p>
+      <h2 class="mt-3 h2">{t(lang, 'download.title')}</h2>
+      <p class="mt-4 lead">{t(lang, 'download.subtitle')}</p>
+    </div>
+
+    <div class="mx-auto mt-12 grid max-w-3xl gap-5 sm:grid-cols-2">
+      <!-- macOS -->
+      <a
+        href={SITE.releases}
+        target="_blank"
+        rel="noopener"
+        id="dl-macos"
+        class="group card flex flex-col items-start gap-3 hover:border-accent/60"
+      >
+        <div class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="text-ink-200"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <div>
+            <h3 class="text-base font-semibold text-white">macOS</h3>
+            <p class="text-xs text-ink-400">.dmg / .app — Apple Silicon & Intel</p>
+          </div>
+        </div>
+        <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-accent">
+          {t(lang, 'download.macos')}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <!-- Windows -->
+      <a
+        href={SITE.releases}
+        target="_blank"
+        rel="noopener"
+        id="dl-windows"
+        class="group card flex flex-col items-start gap-3 hover:border-accent/60"
+      >
+        <div class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="text-ink-200"><path d="M3 5.4l7.4-1v6.9H3V5.4zm0 13.2l7.4 1v-6.8H3v5.8zm8.2 1.1l9.8 1.3V12.5h-9.8v7.2zm0-15.4v7.1h9.8V3L11.2 4.3z"/></svg>
+          <div>
+            <h3 class="text-base font-semibold text-white">Windows</h3>
+            <p class="text-xs text-ink-400">.msi / .exe — x64</p>
+          </div>
+        </div>
+        <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-accent">
+          {t(lang, 'download.windows')}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <p class="mt-8 text-center text-sm text-ink-400">
+      <a href={SITE.releases} target="_blank" rel="noopener" class="text-accent hover:underline">
+        {t(lang, 'download.other')} →
+      </a>
+    </p>
+  </div>
+</section>
+
+<script>
+  // 客户端检测平台并高亮对应卡片
+  const ua = navigator.userAgent.toLowerCase();
+  const isMac = ua.includes('mac os') || ua.includes('macintosh');
+  const isWin = ua.includes('windows');
+  const macCard = document.getElementById('dl-macos');
+  const winCard = document.getElementById('dl-windows');
+  if (isMac && macCard) macCard.classList.add('border-accent', 'bg-accent/5');
+  if (isWin && winCard) winCard.classList.add('border-accent', 'bg-accent/5');
+</script>

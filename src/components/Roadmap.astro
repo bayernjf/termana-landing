@@ -1,0 +1,61 @@
+---
+import { getLangFromUrl, t } from '../i18n/ui';
+const lang = getLangFromUrl(Astro.url);
+const isZh = lang === 'zh';
+
+const phases = isZh
+  ? [
+      { tag: 'v0', status: 'done', title: '项目注册 + agent 绑定 + 一键启动', items: ['项目卡片与 CRUD', 'agent 绑定 + 启动命令解析', 'login shell 安装检测', '可配置 agent 列表', '启动组 Launch all'] },
+      { tag: 'v1', status: 'done', title: 'AGENTS.md 上下文编辑器', items: ['编辑 / 预览 tab', 'CLAUDE.md @AGENTS.md 指针', '6 种情形自动处理', '旧数据迁移 + 原子写入', 'divergence 检测与对齐'] },
+      { tag: 'v1 next', status: 'next', title: '更深的每项目配置', items: ['model 选择', 'permissions', 'MCP 配置绑定'] },
+      { tag: 'v2', status: 'plan', title: '跨 agent 可观测性', items: ['agent 会话全局状态', 'agent 接力 + 共享上下文', '跨会话 handoff'] },
+    ]
+  : [
+      { tag: 'v0', status: 'done', title: 'Project registry + agent binding + 1-click launch', items: ['Project cards & CRUD', 'Agent binding + launch resolution', 'Login-shell install detection', 'Configurable agent list', 'Launch groups'] },
+      { tag: 'v1', status: 'done', title: 'AGENTS.md context editor', items: ['Edit / preview tabs', 'CLAUDE.md @AGENTS.md pointer', '6-case handling', 'Legacy migration + atomic writes', 'Divergence detection & alignment'] },
+      { tag: 'v1 next', status: 'next', title: 'Deeper per-project config', items: ['Model selection', 'Permissions', 'MCP config binding'] },
+      { tag: 'v2', status: 'plan', title: 'Cross-agent observability', items: ['Global agent session state', 'Agent handoff + shared context', 'Cross-session handoff'] },
+    ];
+
+const statusMap = isZh
+  ? { done: '已完成', next: '进行中', plan: '规划中' }
+  : { done: 'Shipped', next: 'Next', plan: 'Planned' };
+
+const statusColor = {
+  done: 'bg-accent/15 text-accent border-accent/30',
+  next: 'bg-yellow-500/15 text-yellow-300 border-yellow-500/30',
+  plan: 'bg-ink-700/40 text-ink-300 border-ink-600',
+};
+---
+
+<section id="roadmap" class="section bg-ink-900/30">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="eyebrow">{isZh ? '路线图' : 'Roadmap'}</p>
+      <h2 class="mt-3 h2">{t(lang, 'roadmap.title')}</h2>
+      <p class="mt-4 lead">{t(lang, 'roadmap.subtitle')}</p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-3xl space-y-4">
+      {phases.map((p) => (
+        <div class="card">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${statusColor[p.status as keyof typeof statusColor]}`}>
+              {statusMap[p.status as keyof typeof statusMap]}
+            </span>
+            <span class="font-mono text-xs text-ink-400">{p.tag}</span>
+            <h3 class="text-sm font-semibold text-white">{p.title}</h3>
+          </div>
+          <ul class="mt-4 grid gap-2 text-sm text-ink-400 sm:grid-cols-2">
+            {p.items.map((item) => (
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-accent/60"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+import { getLangFromUrl, t } from '../i18n/ui';
+const lang = getLangFromUrl(Astro.url);
+const isZh = lang === 'zh';
+
+const steps = isZh
+  ? [
+      { n: '01', title: 'AGENTS.md 是正本', desc: 'termana 编辑它，保存只写 AGENTS.md。文件即事实源，无中间层。' },
+      { n: '02', title: 'CLAUDE.md 是指针', desc: '一次性建好 @AGENTS.md 指针，纯文本非 symlink，Windows / Git 均安全。' },
+      { n: '03', title: '6 种情形自动处理', desc: '两文件的有无组合全部覆盖；不一致时进入可见合并块，人 / AI 双重确认。' },
+      { n: '04', title: '原子写入安全', desc: '临时文件 + 原子替换，失败不留截断文件；CSP 关闭不需要的全局 API。' },
+    ]
+  : [
+      { n: '01', title: 'AGENTS.md is the source', desc: 'termana edits it and writes only AGENTS.md. The file is the truth — no middle layer.' },
+      { n: '02', title: 'CLAUDE.md is a pointer', desc: 'A one-time @AGENTS.md pointer, plain text not symlink — safe on Windows and Git.' },
+      { n: '03', title: '6 cases handled', desc: 'All AGENTS.md × CLAUDE.md combinations covered; divergence enters a visible merge block with human/AI confirmation.' },
+      { n: '04', title: 'Atomic writes', desc: 'Temp file + atomic replace — no truncated files on failure; CSP locks down unneeded global APIs.' },
+    ];
+---
+
+<section id="context" class="section">
+  <div class="container-page">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div>
+        <p class="eyebrow">{isZh ? '上下文编辑器' : 'Context editor'}</p>
+        <h2 class="mt-3 h2">{t(lang, 'context.title')}</h2>
+        <p class="mt-4 lead">{t(lang, 'context.subtitle')}</p>
+
+        <div class="mt-8 space-y-5">
+          {steps.map((s) => (
+            <div class="flex gap-4">
+              <span class="font-mono text-sm font-bold text-accent">{s.n}</span>
+              <div>
+                <h3 class="text-sm font-semibold text-white">{s.title}</h3>
+                <p class="mt-1 text-sm leading-relaxed text-ink-400">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-xl border border-ink-800 bg-ink-900/80 shadow-2xl shadow-ink-950/50">
+        <div class="flex items-center gap-2 border-b border-ink-800 bg-ink-900 px-4 py-2.5">
+          <span class="font-mono text-xs text-ink-400">AGENTS.md</span>
+          <span class="ml-auto rounded bg-accent/15 px-2 py-0.5 font-mono text-[10px] text-accent">saved</span>
+        </div>
+        <pre class="overflow-x-auto p-5 font-mono text-xs leading-relaxed text-ink-200"><code><span class="text-ink-500"># AGENTS.md</span>
+<span class="text-accent">## Project: my-app</span>
+
+Build with Vite + Tauri. Run tests before commit.
+- <span class="text-ink-300">src-tauri/</span> Rust backend
+- <span class="text-ink-300">src/</span> TS frontend
+
+<span class="text-ink-500"># CLAUDE.md (auto-linked)</span>
+<span class="text-accent">@AGENTS.md</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>

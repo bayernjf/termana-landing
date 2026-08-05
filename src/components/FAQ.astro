@@ -1,0 +1,103 @@
+---
+import { getLangFromUrl, t } from '../i18n/ui';
+const lang = getLangFromUrl(Astro.url);
+const isZh = lang === 'zh';
+
+// FAQ 用自然语言问答句式 — GEO 关键：AI 引擎可直接摘录
+const faqs = isZh
+  ? [
+      {
+        q: 'termana 是什么？',
+        a: 'termana 是一个本地优先的终端项目启动器。它在一个面板里管理多个开发项目，为每个项目绑定一个 coding agent（Claude Code、Codex、Aider、OpenCode 等），点一下即可拉起终端、cd 进目录并启动 agent。它还内置一个面向 AGENTS.md 的上下文编辑器。',
+      },
+      {
+        q: 'termana 怎么和 Claude Code 配合？',
+        a: 'termana 把项目绑定到 Claude Code 后，点启动会开终端、cd 进项目并运行 claude。termana 还会把 CLAUDE.md 建成一行 @AGENTS.md 指针，这样 Claude Code 也能读到你在 AGENTS.md 里维护的统一上下文，无需维护两份文件。',
+      },
+      {
+        q: 'termana 是免费的吗？需要联网或账号吗？',
+        a: 'termana 本地优先，无账号、无云、无服务，配置就是磁盘上的一个 TOML 文件。它目前不收费，许可尚未最终确定。',
+      },
+      {
+        q: 'termana 支持哪些平台和终端？',
+        a: 'macOS 通过 Terminal.app（osascript）启动，Windows 通过 PowerShell（带 CREATE_NEW_CONSOLE 并加载 profile）启动。安装检测在用户的 login shell 里进行，因此 fnm / nvm / asdf / volta 的环境也能正确识别已安装的 agent。',
+      },
+      {
+        q: 'AGENTS.md 和 CLAUDE.md 是什么关系？',
+        a: 'AGENTS.md 是 agent 中立的上下文标准，Codex、OpenCode、Cline、新版 Aider 直接读它；Claude Code 读 CLAUDE.md，但 CLAUDE.md 里写一行 @AGENTS.md 即可导入正本。termana 把 AGENTS.md 作为正本编辑，CLAUDE.md 作为一次性指针，两个文件名、一份内容，无 drift、无同步步骤。',
+      },
+      {
+        q: 'termana 和各 agent 厂商自带工具有什么不同？',
+        a: '每个 agent 厂商只管自己的配置；termana 占据 agent 之间的缝隙，是一个不属于任何单一厂商的项目控制层。它提供多项目集中管理、跨 agent 中立、一键启动 + cd、AGENTS.md 编辑和本地优先的 TOML 配置，这些是单一厂商工具不会提供的。',
+      },
+      {
+        q: 'termana 怎么安装？',
+        a: '从 GitHub Releases 下载对应平台的安装包（macOS 的 .dmg 或 Windows 的 .msi），安装后运行即可。开发时可克隆仓库后执行 npm install && npm run tauri dev。',
+      },
+    ]
+  : [
+      {
+        q: 'What is termana?',
+        a: 'termana is a local-first terminal project launcher. It manages multiple development projects in one panel, binds a coding agent (Claude Code, Codex, Aider, OpenCode, etc.) to each, and launches a terminal that cds into the project and starts the agent with one click. It also ships a built-in AGENTS.md context editor.',
+      },
+      {
+        q: 'How does termana work with Claude Code?',
+        a: 'Once a project is bound to Claude Code, launching opens a terminal, cds into the project, and runs claude. termana also turns CLAUDE.md into a one-line @AGENTS.md pointer, so Claude Code reads the same unified context you maintain in AGENTS.md — no need to keep two files in sync.',
+      },
+      {
+        q: 'Is termana free? Does it need an account or internet?',
+        a: 'termana is local-first: no account, no cloud, no server. Config is a TOML file on disk. It is currently free; the license is not yet finalized.',
+      },
+      {
+        q: 'Which platforms and terminals does termana support?',
+        a: 'macOS launches via Terminal.app (osascript); Windows launches via PowerShell (CREATE_NEW_CONSOLE, profile loaded). Install detection runs in your login shell, so fnm / nvm / asdf / volta setups are detected correctly.',
+      },
+      {
+        q: 'How do AGENTS.md and CLAUDE.md relate?',
+        a: 'AGENTS.md is the agent-neutral context standard — Codex, OpenCode, Cline and new Aimer read it directly; Claude Code reads CLAUDE.md, but a one-line @AGENTS.md pointer in CLAUDE.md imports the canonical file. termana edits AGENTS.md as the source of truth and creates CLAUDE.md as a one-time pointer: two filenames, one body of content, no drift, no sync step.',
+      },
+      {
+        q: 'How is termana different from each agent vendor\u2019s own tooling?',
+        a: 'Each agent vendor only manages its own config; termana occupies the seams between agents as a project control layer that belongs to no single vendor. It provides multi-project hub, agent-neutral binding, one-click launch + cd, AGENTS.md editing, and local-first TOML config — things a single-vendor tool will not offer.',
+      },
+      {
+        q: 'How do I install termana?',
+        a: 'Download the build for your platform from GitHub Releases (.dmg on macOS, .msi on Windows) and install it. For development, clone the repo and run npm install && npm run tauri dev.',
+      },
+    ];
+
+// FAQPage JSON-LD — 让搜索引擎和 AI 直接渲染问答富结果
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section id="faq" class="section">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="eyebrow">{isZh ? 'FAQ' : 'FAQ'}</p>
+      <h2 class="mt-3 h2">{t(lang, 'faq.title')}</h2>
+      <p class="mt-4 lead">{t(lang, 'faq.subtitle')}</p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-3xl space-y-3">
+      {faqs.map((f, i) => (
+        <details class="group card cursor-pointer" open={i === 0}>
+          <summary class="flex items-center justify-between gap-4 text-sm font-semibold text-white marker:hidden">
+            <span>{f.q}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-ink-400 transition group-open:rotate-180"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-ink-400">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqLd)} />
