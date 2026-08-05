@@ -1,0 +1,122 @@
+---
+// Base layout — 所有页面共用
+// 完整 SEO meta（OG / Twitter / canonical / hreflang）+ GEO（面向 AI 大模型）+ JSON-LD 结构化数据
+import '../styles/global.css';
+import { getLangFromUrl, t, langPrefix } from '../i18n/ui';
+import { SITE, APP } from '../i18n/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const prefix = langPrefix(lang);
+
+const canonicalPath = Astro.url.pathname;
+const canonicalURL = new URL(canonicalPath, Astro.site ?? SITE.url).href;
+const curHome = new URL(prefix || '/', Astro.site ?? SITE.url).href;
+
+const title = Astro.props.title ?? t(lang, 'site.title');
+const description = Astro.props.description ?? t(lang, 'site.description');
+const ogImage = Astro.props.ogImage
+  ? new URL(Astro.props.ogImage, Astro.site ?? SITE.url).href
+  : new URL('/og.jpg', Astro.site ?? SITE.url).href;
+
+// JSON-LD: SoftwareApplication — AI 引擎用作事实卡片
+const softwareApp = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: APP.name,
+  applicationCategory: APP.applicationCategory,
+  operatingSystem: APP.operatingSystem.join(', '),
+  description: APP.oneLiner[lang],
+  url: curHome,
+  downloadUrl: SITE.releases,
+  offers: {
+    '@type': 'Offer',
+    price: APP.offers.price,
+    priceCurrency: APP.offers.priceCurrency,
+  },
+  featureList: [
+    'Project cards with one-click terminal launch',
+    'Agent binding per project (Claude Code, Codex, Aider, OpenCode)',
+    'Install detection in login shell (fnm / nvm / volta / asdf)',
+    'AGENTS.md context editor with markdown preview',
+    'CLAUDE.md @AGENTS.md pointer auto-link',
+    'Launch groups for multi-project startup',
+    'Local-first, no account, no cloud, TOML config',
+  ],
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  inLanguage: lang === 'zh' ? 'zh-CN' : 'en-US',
+  publisher: { '@type': 'Organization', name: SITE.name },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: lang === 'zh' ? '首页' : 'Home',
+      item: curHome,
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'} class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <link rel="alternate" hreflang="en-US" href={new URL('/', Astro.site ?? SITE.url).href} />
+    <link rel="alternate" hreflang="zh-CN" href={new URL('/zh', Astro.site ?? SITE.url).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site ?? SITE.url).href} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta property="og:site_name" content={SITE.name} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:site" content={SITE.twitter} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(softwareApp)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(website)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumb)} />
+  </head>
+  <body class="min-h-screen bg-ink-950 text-ink-100 antialiased font-sans">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-ink-800 focus:px-4 focus:py-2 focus:text-accent"
+      >{lang === 'zh' ? '跳到主内容' : 'Skip to content'}</a
+    >
+    <slot />
+  </body>
+</html>
