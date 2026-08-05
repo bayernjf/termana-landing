@@ -1,0 +1,54 @@
+---
+import { getLangFromUrl, t } from '../i18n/ui';
+import { SITE } from '../i18n/site';
+
+const lang = getLangFromUrl(Astro.url);
+const otherLang = lang === 'en' ? 'zh' : 'en';
+const otherHref = lang === 'en' ? '/zh' : '/';
+const otherLabel = lang === 'en' ? '中文' : 'EN';
+
+const navItems = [
+  { href: '#features', key: 'nav.features' as const },
+  { href: '#compare', key: 'nav.compare' as const },
+  { href: '#context', key: 'nav.context' as const },
+  { href: '#download', key: 'nav.download' as const },
+  { href: '#faq', key: 'nav.faq' as const },
+  { href: '#roadmap', key: 'nav.roadmap' as const },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-ink-800/60 bg-ink-950/80 backdrop-blur-xl">
+  <div class="container-page flex h-14 items-center justify-between sm:h-16">
+    <a href={lang === 'en' ? '/' : '/zh'} class="flex items-center gap-2 font-bold text-white">
+      <span class="grid h-7 w-7 place-items-center rounded-md bg-accent font-mono text-sm text-ink-950">t</span>
+      <span class="text-base tracking-tight">termana</span>
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex">
+      {navItems.map((item) => (
+        <a href={item.href} class="text-sm text-ink-300 transition hover:text-white">
+          {t(lang, item.key)}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={otherHref}
+        class="rounded-md border border-ink-700 px-2.5 py-1 text-xs font-medium text-ink-200 transition hover:border-ink-600 hover:text-white"
+        hreflang={otherLang === 'zh' ? 'zh-CN' : 'en-US'}
+      >
+        {otherLabel}
+      </a>
+      <a
+        href={SITE.repo}
+        target="_blank"
+        rel="noopener"
+        class="hidden rounded-md border border-ink-700 px-3 py-1.5 text-xs font-medium text-ink-200 transition hover:border-ink-600 hover:text-white sm:inline-block"
+      >
+        GitHub
+      </a>
+      <a href="#download" class="btn-primary px-3 py-1.5 text-xs">{t(lang, 'nav.download')}</a>
+    </div>
+  </div>
+</header>

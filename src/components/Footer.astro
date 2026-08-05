@@ -1,0 +1,61 @@
+---
+import { getLangFromUrl, t } from '../i18n/ui';
+import { SITE } from '../i18n/site';
+
+const lang = getLangFromUrl(Astro.url);
+const year = new Date().getFullYear();
+const home = lang === 'en' ? '/' : '/zh';
+
+const cols = [
+  {
+    title: t(lang, 'footer.product'),
+    links: [
+      { label: t(lang, 'nav.features'), href: '#features' },
+      { label: t(lang, 'nav.compare'), href: '#compare' },
+      { label: t(lang, 'nav.download'), href: '#download' },
+      { label: t(lang, 'nav.roadmap'), href: '#roadmap' },
+    ],
+  },
+  {
+    title: t(lang, 'footer.resources'),
+    links: [
+      { label: t(lang, 'nav.docs'), href: SITE.docs },
+      { label: t(lang, 'nav.faq'), href: '#faq' },
+      { label: 'Changelog', href: SITE.changelog },
+      { label: 'GitHub', href: SITE.repo },
+    ],
+  },
+];
+---
+
+<footer class="border-t border-ink-800 bg-ink-950">
+  <div class="container-page py-14">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div class="md:col-span-2">
+        <a href={home} class="flex items-center gap-2 font-bold text-white">
+          <span class="grid h-7 w-7 place-items-center rounded-md bg-accent font-mono text-sm text-ink-950">t</span>
+          <span>termana</span>
+        </a>
+        <p class="mt-3 max-w-sm text-sm leading-relaxed text-ink-400">{t(lang, 'footer.tagline')}</p>
+      </div>
+      {cols.map((col) => (
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-ink-300">{col.title}</h3>
+          <ul class="mt-3 space-y-2">
+            {col.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-ink-400 transition hover:text-accent">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="mt-10 flex flex-col items-start justify-between gap-3 border-t border-ink-800 pt-6 text-xs text-ink-500 sm:flex-row sm:items-center">
+      <p>&copy; {year} termana. {t(lang, 'footer.copyright')}</p>
+      <p class="font-mono">v1 · local-first · agent-neutral</p>
+    </div>
+  </div>
+</footer>
