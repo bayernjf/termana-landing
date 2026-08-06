@@ -6,11 +6,11 @@ export const SITE = {
   // 与 astro.config.mjs 的 site 保持一致
   url: 'https://termana-landing.pages.dev',
   // GitHub 仓库（用户后续替换为实际地址）
-  repo: 'https://github.com/your-org/termana',
+  repo: 'https://github.com/bayernjf/termana',
   // GitHub Releases 下载入口
-  releases: 'https://github.com/your-org/termana/releases',
-  docs: 'https://github.com/your-org/termana#readme',
-  changelog: 'https://github.com/your-org/termana/releases',
+  releases: 'https://github.com/bayernjf/termana/releases',
+  docs: 'https://github.com/bayernjf/termana#readme',
+  changelog: 'https://github.com/bayernjf/termana/releases',
   license: 'Not yet licensed',
   // 联系邮箱（替换为真实地址）
   email: 'hello@termana.dev',
