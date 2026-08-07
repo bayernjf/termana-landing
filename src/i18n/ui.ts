@@ -63,6 +63,8 @@ export const ui = {
     'footer.product': 'Product',
     'footer.resources': 'Resources',
     'footer.legal': 'Legal',
+    'footer.privacy': 'Privacy Policy',
+    'footer.terms': 'Terms of Service',
     'footer.copyright': 'All rights reserved.',
   },
 
@@ -118,6 +120,8 @@ export const ui = {
     'footer.product': '产品',
     'footer.resources': '资源',
     'footer.legal': '法律',
+    'footer.privacy': '隐私政策',
+    'footer.terms': '服务条款',
     'footer.copyright': '保留所有权利。',
   },
 } as const;

@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = '404 — Page not found | termana';
+const description = 'The page you are looking for does not exist or has been moved.';
+---
+
+<Base title={title} description={description}>
+  <Header />
+  <main id="main" class="container-page py-28 sm:py-40">
+    <div class="mx-auto max-w-xl text-center">
+      <div class="mx-auto max-w-md overflow-hidden rounded-xl border border-ink-800 bg-ink-900/80 text-left shadow-2xl shadow-ink-950/50 backdrop-blur">
+        <div class="flex items-center gap-2 border-b border-ink-800 bg-ink-900 px-4 py-2.5">
+          <span class="h-3 w-3 rounded-full bg-red-500/80"></span>
+          <span class="h-3 w-3 rounded-full bg-yellow-500/80"></span>
+          <span class="h-3 w-3 rounded-full bg-green-500/80"></span>
+          <span class="ml-3 font-mono text-xs text-ink-400">termana</span>
+        </div>
+        <pre class="overflow-x-auto p-5 font-mono text-xs leading-relaxed text-ink-200 sm:text-sm"><code><span class="text-accent">$</span> termana open {Astro.url.pathname}
+<span class="text-ink-400">→ error: route not found (exit code 404)</span></code></pre>
+      </div>
+
+      <h1 class="mt-10 text-3xl font-bold tracking-tight text-white sm:text-4xl">Page not found</h1>
+      <p class="mt-4 leading-relaxed text-ink-300">
+        The page you are looking for does not exist, or it has been moved.
+      </p>
+      <a href="/" class="btn-primary mt-8">Back to home</a>
+    </div>
+  </main>
+  <Footer />
+</Base>

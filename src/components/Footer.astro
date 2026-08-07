@@ -1,10 +1,11 @@
 ---
-import { getLangFromUrl, t } from '../i18n/ui';
+import { getLangFromUrl, t, langPrefix } from '../i18n/ui';
 import { SITE } from '../i18n/site';
 
 const lang = getLangFromUrl(Astro.url);
 const year = new Date().getFullYear();
 const home = lang === 'en' ? '/' : '/zh';
+const prefix = langPrefix(lang);
 
 const cols = [
   {
@@ -26,12 +27,19 @@ const cols = [
       { label: 'BayJF', href: 'https://bayjf.com' },
     ],
   },
+  {
+    title: t(lang, 'footer.legal'),
+    links: [
+      { label: t(lang, 'footer.privacy'), href: `${prefix}/privacy` },
+      { label: t(lang, 'footer.terms'), href: `${prefix}/terms` },
+    ],
+  },
 ];
 ---
 
 <footer class="border-t border-ink-800 bg-ink-950">
   <div class="container-page py-14">
-    <div class="grid gap-10 md:grid-cols-4">
+    <div class="grid gap-10 md:grid-cols-5">
       <div class="md:col-span-2">
         <a href={home} class="flex items-center gap-2 font-bold text-white">
           <span class="grid h-7 w-7 place-items-center rounded-md bg-accent font-mono text-sm text-ink-950">t</span>
