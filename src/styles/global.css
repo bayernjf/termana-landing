@@ -1,6 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* 设计令牌：与 termana 桌面端一致的暗色石墨蓝灰调（原 tailwind.config.mjs theme.extend） */
+@theme {
+  --color-ink-50: #f5f7fa;
+  --color-ink-100: #e6ebf2;
+  --color-ink-200: #c5cfe0;
+  --color-ink-300: #9babc4;
+  --color-ink-400: #6b7e9e;
+  --color-ink-500: #4a5d7e;
+  --color-ink-600: #364864;
+  --color-ink-700: #28374d;
+  --color-ink-800: #1d2937;
+  --color-ink-900: #141c28;
+  --color-ink-950: #0c1219;
+
+  --color-accent: #5fd1c5;
+  --color-accent-soft: #7fe3d8;
+  --color-accent-deep: #3aa89c;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Roboto",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", "Monaco", "Consolas",
+    monospace;
+}
 
 @layer base {
   html {
