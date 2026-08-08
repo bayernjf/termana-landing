@@ -12,7 +12,7 @@ export type Lang = keyof typeof languages;
 
 export const ui = {
   en: {
-    'site.title': 'termana — Terminal Project Launcher for Coding Agents',
+    'site.title': 'termana | Terminal Project Launcher for Coding Agents',
     'site.description':
       'termana is a local-first terminal project launcher. Manage multiple projects in one panel, bind a coding agent (Claude Code, Codex, Aider, OpenCode) to each, and launch with one click. Built-in AGENTS.md context editor.',
 
@@ -28,18 +28,18 @@ export const ui = {
     'hero.badge': 'Local-first · Agent-neutral · v1',
     'hero.title': 'One panel for every coding agent.',
     'hero.subtitle':
-      'termana is a terminal project launcher for people who live in the terminal. Manage multiple projects, bind a coding agent to each, and launch with one click — the terminal opens, cd\'s into the project, and starts the agent.',
+      'termana is a terminal project launcher for people who live in the terminal. Manage multiple projects, bind a coding agent to each, and launch with one click: the terminal opens, cd\'s into the project, and starts the agent.',
     'hero.cta.download': 'Download',
     'hero.cta.viewSource': 'View on GitHub',
     'hero.platforms': 'macOS · Windows · Local-first, no account',
 
     'features.title': 'Why termana',
     'features.subtitle':
-      'In a multi-agent world, each CLI agent vendor only manages its own config. termana sits in the seams between agents — a project control layer that belongs to no single vendor.',
+      'In a multi-agent world, each CLI agent vendor only manages its own config. termana sits in the seams between agents: a project control layer that belongs to no single vendor.',
 
     'download.title': 'Download termana',
     'download.subtitle':
-      'Pick your platform. termana is local-first — no account, no cloud, no server. Config is a TOML file on disk.',
+      'Pick your platform. termana is local-first: no account, no cloud, no server. Config is a TOML file on disk.',
     'download.macos': 'Download for macOS',
     'download.windows': 'Download for Windows',
     'download.other': 'Other builds',
@@ -47,11 +47,11 @@ export const ui = {
 
     'compare.title': 'termana vs. per-agent tools',
     'compare.subtitle':
-      'Each agent vendor only manages its own config. termana occupies the seams between agents — the one position no single vendor will own.',
+      'Each agent vendor only manages its own config. termana occupies the seams between agents: the one position no single vendor will own.',
 
     'context.title': 'AGENTS.md, made effortless',
     'context.subtitle':
-      'AGENTS.md is the agent-neutral context standard — Codex, OpenCode, Cline and new Aider read it directly; Claude Code reads it via a one-line @AGENTS.md pointer. termana is its editor: file is the source of truth, no sync, no drift.',
+      'AGENTS.md is the agent-neutral context standard: Codex, OpenCode, Cline and new Aider read it directly; Claude Code reads it via a one-line @AGENTS.md pointer. termana is its editor: file is the source of truth, no sync, no drift.',
 
     'faq.title': 'Frequently asked questions',
     'faq.subtitle': 'Common questions about termana, written so they can be quoted directly.',
@@ -69,7 +69,7 @@ export const ui = {
   },
 
   zh: {
-    'site.title': 'termana — 面向 Coding Agent 的终端项目启动器',
+    'site.title': 'termana | 面向 Coding Agent 的终端项目启动器',
     'site.description':
       'termana 是一个本地优先的终端项目启动器。在一个面板里管理多个项目，为每个项目绑定一个 coding agent（Claude Code、Codex、Aider、OpenCode），点一下即可启动。内置 AGENTS.md 上下文编辑器。',
 

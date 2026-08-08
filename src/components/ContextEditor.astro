@@ -11,10 +11,10 @@ const steps = isZh
       { n: '04', title: '原子写入安全', desc: '临时文件 + 原子替换，失败不留截断文件；CSP 关闭不需要的全局 API。' },
     ]
   : [
-      { n: '01', title: 'AGENTS.md is the source', desc: 'termana edits it and writes only AGENTS.md. The file is the truth — no middle layer.' },
-      { n: '02', title: 'CLAUDE.md is a pointer', desc: 'A one-time @AGENTS.md pointer, plain text not symlink — safe on Windows and Git.' },
+      { n: '01', title: 'AGENTS.md is the source', desc: 'termana edits it and writes only AGENTS.md. The file is the truth: no middle layer.' },
+      { n: '02', title: 'CLAUDE.md is a pointer', desc: 'A one-time @AGENTS.md pointer, plain text not symlink, safe on Windows and Git.' },
       { n: '03', title: '6 cases handled', desc: 'All AGENTS.md × CLAUDE.md combinations covered; divergence enters a visible merge block with human/AI confirmation.' },
-      { n: '04', title: 'Atomic writes', desc: 'Temp file + atomic replace — no truncated files on failure; CSP locks down unneeded global APIs.' },
+      { n: '04', title: 'Atomic writes', desc: 'Temp file + atomic replace: no truncated files on failure; CSP locks down unneeded global APIs.' },
     ];
 ---
 
