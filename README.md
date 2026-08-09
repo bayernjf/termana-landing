@@ -15,6 +15,7 @@ termana 是一个本地优先的终端项目启动器桌面应用（macOS / Wind
 | i18n | Astro 内置 i18n 配置（`en` / `zh`，默认 `en` 不带前缀）+ 自维护字典 `src/i18n/ui.ts` 与站点常量 `src/i18n/site.ts` |
 | SEO | 手动维护的 `public/sitemap.xml`（sitemap 集成已停用）、`robots.txt`、`llms.txt` / `llms-full.txt`（GEO）、OG 图 |
 | 包管理器 | npm（仓库带 `package-lock.json`） |
+| 共享设计包 | `@bay/landing-ui`（`github:bayernjf/landing-ui#v1.1.0`） |
 
 ## 快速开始
 
@@ -62,6 +63,13 @@ i18n 配置为 `locales: ['en', 'zh']`、`defaultLocale: 'en'`、`prefixDefaultL
 | `/zh` | 中文首页 |
 | `/zh/privacy`、`/zh/terms` | 中文隐私政策 / 服务条款 |
 | `/404` | 404 页面 |
+
+## 共享设计包
+
+本仓库使用共享设计包 `@bay/landing-ui`（`github:bayernjf/landing-ui#v1.1.0`）：
+- 图标统一走 `@bay/landing-ui/components/Icon.astro`（内联 Lucide SVG，无运行时依赖）
+- 设计令牌来自 `@bay/landing-ui/styles/tokens.css`（`--lui-*`），品牌色在 `src/styles/global.css` 以 `:root { --lui-accent }` 覆盖
+- 包版本以 git tag 管理；升级时改 `package.json` 中的 tag 后重新 `npm install`
 
 ## 部署
 
