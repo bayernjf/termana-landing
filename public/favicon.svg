@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- 外框：圆角矩形，深色底 -->
   <rect width="32" height="32" rx="7" fill="#0c1219"/>
-  <rect x="3" y="3" width="26" height="26" rx="5" fill="none" stroke="#5fd1c5" stroke-width="1.5" opacity="0.3"/>
-  <text x="16" y="22" font-family="ui-monospace, Menlo, monospace" font-size="18" font-weight="700" fill="#5fd1c5" text-anchor="middle">t</text>
+
+  <!-- 青色边框 -->
+  <rect x="3" y="3" width="26" height="26" rx="5" fill="none" stroke="#5fd1c5" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- 终端符号 >_ -->
+  <text x="10" y="21" font-family="ui-monospace, Menlo, monospace" font-size="16" font-weight="700" fill="#5fd1c5">&gt;</text>
+  <rect x="16" y="17" width="6" height="2" fill="#5fd1c5" rx="1"/>
 </svg>
