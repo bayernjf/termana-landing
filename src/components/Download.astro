@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, t } from '../i18n/ui';
 import { SITE } from '../i18n/site';
+import Icon from '@bay/landing-ui/components/Icon.astro';
 const lang = getLangFromUrl(Astro.url);
 const isZh = lang === 'zh';
 ---
@@ -31,7 +32,7 @@ const isZh = lang === 'zh';
         </div>
         <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-accent">
           {t(lang, 'download.macos')}
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          <Icon name="ArrowRight" size={14} />
         </span>
       </a>
 
@@ -52,7 +53,7 @@ const isZh = lang === 'zh';
         </div>
         <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-accent">
           {t(lang, 'download.windows')}
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          <Icon name="ArrowRight" size={14} />
         </span>
       </a>
     </div>
