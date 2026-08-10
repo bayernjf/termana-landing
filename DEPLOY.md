@@ -21,9 +21,9 @@ git push -u origin main
    - **Framework preset**: Astro
    - **Build command**: `npm run build`
    - **Build output directory**: `dist`
-   - **Node version**: 18 或更高（环境变量 `NODE_VERSION=20`）
+   - **Node version**: 22 或更高（环境变量 `NODE_VERSION=22`，Astro 7 要求 Node >= 22.12.0）
 4. 环境变量（可选）：
-   - `NODE_VERSION` = `20`
+   - `NODE_VERSION` = `22`
 5. Save and Deploy
 
 ### 3. 后续自定义域名

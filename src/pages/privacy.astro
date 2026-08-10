@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl } from '../i18n/ui';
+import { SITE } from '../i18n/site';
+
+const lang = getLangFromUrl(Astro.url);
+const zh = lang === 'zh';
+---
+
+<Base
+  title={zh ? '隐私政策 · termana' : 'Privacy Policy · termana'}
+  description={zh ? 'termana 隐私政策：本地优先工具与官网如何处理你的信息。' : 'termana Privacy Policy: how the local-first tool and this site handle your information.'}
+>
+  <Header />
+  <main id="main" class="container-page py-16">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="text-3xl font-bold text-white">{zh ? '隐私政策' : 'Privacy Policy'}</h1>
+      <p class="mt-2 text-sm text-ink-500">{zh ? '最后更新：2026 年 8 月 7 日' : 'Last updated: August 7, 2026'}</p>
+
+      <div class="mt-8 space-y-8 text-sm leading-7 text-ink-300">
+        <section>
+          <h2 class="text-lg font-semibold text-ink-100">{zh ? '1. 本地优先承诺' : '1. Local-First Commitment'}</h2>
+          <p class="mt-2">
+            {zh
+              ? 'termana 是一款本地优先（local-first）的终端项目启动工具：无账号、无云端、配置存于本机（TOML 文件）。应用本身不收集、不上传你的项目路径、代码或任何使用数据。'
+              : 'termana is a local-first terminal project launcher: no accounts, no cloud, configuration stored on your machine (TOML files). The app itself does not collect or transmit your project paths, code, or any usage data.'}
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-ink-100">{zh ? '2. 官网信息' : '2. This Website'}</h2>
+          <ul class="mt-2 list-disc space-y-1 pl-5">
+            <li>{zh ? '本站为静态站点，不提供账号注册，不主动收集姓名、邮箱等个人身份信息。' : 'This site is static, offers no account registration, and does not actively collect personally identifiable information.'}</li>
+            <li>{zh ? '托管平台（Cloudflare Pages）可能按其自身政策记录基础访问日志，该过程不受本站控制。' : 'The hosting platform (Cloudflare Pages) may record basic access logs under its own policies, outside our control.'}</li>
+            <li>{zh ? '若后续启用统计分析，仅使用匿名化的访问统计，不用于识别个人身份。' : 'If analytics are enabled in the future, only anonymized usage statistics will be used.'}</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-ink-100">{zh ? '3. Cookie 与本地存储' : '3. Cookies & Local Storage'}</h2>
+          <p class="mt-2">
+            {zh
+              ? '本站可能使用 Cookie 或 localStorage 保存语言偏好等界面设置，仅用于改善浏览体验，不用于跨站追踪。'
+              : 'The site may use cookies or localStorage to remember interface preferences such as language, solely to improve browsing and never for cross-site tracking.'}
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-ink-100">{zh ? '4. 第三方链接' : '4. Third-Party Links'}</h2>
+          <p class="mt-2">
+            {zh ? '本站包含指向 GitHub 等第三方网站的链接，其隐私实践以各自政策为准。' : 'The site links to third-party websites such as GitHub; their privacy practices are governed by their own policies.'}
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-ink-100">{zh ? '5. 变更与联系' : '5. Changes & Contact'}</h2>
+          <p class="mt-2">
+            {zh ? '本政策可能随产品演进更新，变更将在本页发布。如有疑问，请通过 ' : 'This policy may be updated as the product evolves. Questions can be raised via '}
+            <a href={SITE.repo} class="text-accent hover:underline">{zh ? 'GitHub 仓库' : 'the GitHub repository'}</a>
+            {zh ? ' 的 Issues 与我们联系。' : '.'}
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

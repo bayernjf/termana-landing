@@ -20,7 +20,12 @@ const navItems = [
 <header class="sticky top-0 z-40 border-b border-ink-800/60 bg-ink-950/80 backdrop-blur-xl">
   <div class="container-page flex h-14 items-center justify-between sm:h-16">
     <a href={lang === 'en' ? '/' : '/zh'} class="flex items-center gap-2 font-bold text-white">
-      <span class="grid h-7 w-7 place-items-center rounded-md bg-accent font-mono text-sm text-ink-950">t</span>
+      <svg viewBox="0 0 32 32" class="h-7 w-7" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#0c1219" />
+        <rect x="3" y="3" width="26" height="26" rx="5" fill="none" stroke="#5fd1c5" stroke-width="1.5" opacity="0.4" />
+        <text x="10" y="21" font-family="ui-monospace, Menlo, monospace" font-size="16" font-weight="700" fill="#5fd1c5">&gt;</text>
+        <rect x="16" y="17" width="6" height="2" fill="#5fd1c5" rx="1" />
+      </svg>
       <span class="text-base tracking-tight">termana</span>
     </a>
 
@@ -39,6 +44,14 @@ const navItems = [
         hreflang={otherLang === 'zh' ? 'zh-CN' : 'en-US'}
       >
         {otherLabel}
+      </a>
+      <a
+        href="https://bayjf.com"
+        target="_blank"
+        rel="noopener"
+        class="hidden rounded-md px-2 py-1.5 text-xs font-medium text-ink-300 transition hover:text-white sm:inline-block"
+      >
+        BayJF
       </a>
       <a
         href={SITE.repo}
