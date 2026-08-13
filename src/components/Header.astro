@@ -1,5 +1,6 @@
 ---
 import BayjfLink from '@bay/landing-ui/components/BayjfLink.astro';
+import StarOnGithub from '@bay/landing-ui/components/StarOnGithub.astro';
 import { getLangFromUrl, t } from '../i18n/ui';
 import { SITE } from '../i18n/site';
 
@@ -47,14 +48,7 @@ const navItems = [
         {otherLabel}
       </a>
       <BayjfLink size={18} class="hidden rounded-md px-2 py-1.5 text-xs font-medium text-ink-300 transition hover:text-white sm:inline-block" />
-      <a
-        href={SITE.repo}
-        target="_blank"
-        rel="noopener"
-        class="hidden rounded-md border border-ink-700 px-3 py-1.5 text-xs font-medium text-ink-200 transition hover:border-ink-600 hover:text-white sm:inline-block"
-      >
-        GitHub
-      </a>
+      <StarOnGithub href="https://github.com/bayernjf/termana" size={15} class="hidden text-ink-300 sm:inline-flex" />
       <a href="#download" class="btn-primary px-3 py-1.5 text-xs">{t(lang, 'nav.download')}</a>
     </div>
   </div>
