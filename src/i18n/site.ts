@@ -4,7 +4,7 @@
 export const SITE = {
   name: 'termana',
   // 与 astro.config.mjs 的 site 保持一致
-  url: 'https://termana-landing.pages.dev',
+  url: 'https://termana.bayjf.com',
   // GitHub 仓库（用户后续替换为实际地址）
   repo: 'https://github.com/bayernjf/termana',
   // GitHub Releases 下载入口

@@ -76,8 +76,8 @@ Download the build for your platform from GitHub Releases (.dmg on macOS, .msi o
 Currently free. License not yet finalized.
 
 ## Links
-- Website: https://termana-landing.pages.dev
-- Chinese version: https://termana-landing.pages.dev/zh
+- Website: https://termana.bayjf.com
+- Chinese version: https://termana.bayjf.com/zh
 - GitHub: https://github.com/your-org/termana
 - Releases: https://github.com/your-org/termana/releases
 - Docs: https://github.com/your-org/termana#readme
