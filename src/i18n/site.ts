@@ -13,7 +13,7 @@ export const SITE = {
   changelog: 'https://github.com/bayernjf/termana/releases',
   license: 'Not yet licensed',
   // 联系邮箱（替换为真实地址）
-  email: 'hello@termana.dev',
+  email: 'b4yernjf@gmail.com',
   twitter: '@termana_dev',
 } as const;
 
