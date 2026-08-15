@@ -1,5 +1,6 @@
 ---
 import BayjfLink from '@bay/landing-ui/components/BayjfLink.astro';
+import StarOnGithub from '@bay/landing-ui/components/StarOnGithub.astro';
 import { getLangFromUrl, t, langPrefix } from '../i18n/ui';
 import { SITE } from '../i18n/site';
 
@@ -24,8 +25,8 @@ const cols = [
       { label: t(lang, 'nav.docs'), href: SITE.docs },
       { label: t(lang, 'nav.faq'), href: '#faq' },
       { label: 'Changelog', href: SITE.changelog },
-      { label: 'GitHub', href: SITE.repo },
       { label: 'BayJF', href: 'https://bayjf.com' },
+      { label: 'GitHub', href: SITE.repo },
     ],
   },
   {
@@ -61,6 +62,8 @@ const cols = [
               <li>
                 {link.href === 'https://bayjf.com' ? (
                   <BayjfLink size={16} class="text-sm text-ink-400 transition hover:text-accent" label={link.label} />
+                ) : link.href === SITE.repo ? (
+                  <StarOnGithub href={SITE.repo} size={14} class="text-ink-400" />
                 ) : (
                   <a href={link.href} class="text-sm text-ink-400 transition hover:text-accent">
                     {link.label}
