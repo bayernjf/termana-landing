@@ -18,16 +18,16 @@ termana is a terminal project launcher for people who live in the terminal. Mana
 Download the build for your platform from GitHub Releases (.dmg on macOS, .msi on Windows) and install. For development: clone the repo, run `npm install && npm run tauri dev`.
 
 ## Sections
-- [Features](https://termana-landing.pages.dev/#features)
-- [Compare with per-agent tools](https://termana-landing.pages.dev/#compare)
-- [AGENTS.md context editor](https://termana-landing.pages.dev/#context)
-- [Download](https://termana-landing.pages.dev/#download)
-- [FAQ](https://termana-landing.pages.dev/#faq)
-- [Roadmap](https://termana-landing.pages.dev/#roadmap)
-- [中文版](https://termana-landing.pages.dev/zh)
+- [Features](https://termana.bayjf.com/#features)
+- [Compare with per-agent tools](https://termana.bayjf.com/#compare)
+- [AGENTS.md context editor](https://termana.bayjf.com/#context)
+- [Download](https://termana.bayjf.com/#download)
+- [FAQ](https://termana.bayjf.com/#faq)
+- [Roadmap](https://termana.bayjf.com/#roadmap)
+- [中文版](https://termana.bayjf.com/zh)
 
 ## Links
-- Website: https://termana-landing.pages.dev
+- Website: https://termana.bayjf.com
 - GitHub: https://github.com/your-org/termana
 - Releases: https://github.com/your-org/termana/releases
 - Docs: https://github.com/your-org/termana#readme

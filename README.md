@@ -77,4 +77,4 @@ i18n 配置为 `locales: ['en', 'zh']`、`defaultLocale: 'en'`、`prefixDefaultL
 
 - **Cloudflare Pages** 直连 Git（纯静态，无后端）：Framework preset `Astro`，构建命令 `npm run build`，输出目录 `dist`，环境变量 `NODE_VERSION=20`
 - 推送 `main` 自动构建发布，PR 自动生成预览 URL
-- 当前站点 URL 为 `https://termana-landing.pages.dev`（`astro.config.mjs` 的 `SITE_URL`）；绑定自定义域名时需按 DEPLOY.md 同步修改 `src/i18n/site.ts`、`robots.txt`、`sitemap.xml`、`llms.txt` 等文件中的域名
+- 当前站点 URL 为 `https://termana.bayjf.com`（`astro.config.mjs` 的 `SITE_URL`）；绑定自定义域名时需按 DEPLOY.md 同步修改 `src/i18n/site.ts`、`robots.txt`、`sitemap.xml`、`llms.txt` 等文件中的域名

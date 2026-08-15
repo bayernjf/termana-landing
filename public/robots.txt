@@ -26,4 +26,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://termana-landing.pages.dev/sitemap.xml
+Sitemap: https://termana.bayjf.com/sitemap.xml

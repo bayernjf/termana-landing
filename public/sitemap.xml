@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://termana-landing.pages.dev/</loc>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://termana-landing.pages.dev/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://termana-landing.pages.dev/zh"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://termana-landing.pages.dev/"/>
+    <loc>https://termana.bayjf.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://termana.bayjf.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://termana.bayjf.com/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://termana.bayjf.com/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://termana-landing.pages.dev/zh</loc>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://termana-landing.pages.dev/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://termana-landing.pages.dev/zh"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://termana-landing.pages.dev/"/>
+    <loc>https://termana.bayjf.com/zh</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://termana.bayjf.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://termana.bayjf.com/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://termana.bayjf.com/"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
