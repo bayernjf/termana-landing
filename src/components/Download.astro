@@ -20,7 +20,7 @@ const isZh = lang === 'zh';
         href={SITE.releases}
         target="_blank"
         rel="noopener"
-        id="dl-macos"
+        data-download="mac"
         class="group card flex flex-col items-start gap-3 hover:border-accent/60"
       >
         <div class="flex items-center gap-3">
@@ -41,7 +41,7 @@ const isZh = lang === 'zh';
         href={SITE.releases}
         target="_blank"
         rel="noopener"
-        id="dl-windows"
+        data-download="win"
         class="group card flex flex-col items-start gap-3 hover:border-accent/60"
       >
         <div class="flex items-center gap-3">
@@ -67,12 +67,22 @@ const isZh = lang === 'zh';
 </section>
 
 <script>
-  // 客户端检测平台并高亮对应卡片
-  const ua = navigator.userAgent.toLowerCase();
-  const isMac = ua.includes('mac os') || ua.includes('macintosh');
-  const isWin = ua.includes('windows');
-  const macCard = document.getElementById('dl-macos');
-  const winCard = document.getElementById('dl-windows');
-  if (isMac && macCard) macCard.classList.add('border-accent', 'bg-accent/5');
-  if (isWin && winCard) winCard.classList.add('border-accent', 'bg-accent/5');
+  import { detectPlatform, fetchLatestAssets, formatBytes } from '@bay/landing-ui/lib/releases';
+
+  // href 已经兜底到 releases 页，命中最新 release 的资产就换成直链
+  const { assets } = await fetchLatestAssets('bayernjf/termana', { mac: '.dmg', win: '.exe' });
+
+  for (const [key, asset] of Object.entries(assets)) {
+    if (!asset) continue;
+    document.querySelectorAll(`[data-download="${key}"]`).forEach((el) => {
+      el.setAttribute('href', asset.url);
+      el.setAttribute('title', formatBytes(asset.size));
+    });
+  }
+
+  // 高亮访客当前平台的卡片
+  const platform = detectPlatform();
+  document.querySelectorAll(`[data-download="${platform}"]`).forEach((el) => {
+    el.classList.add('border-accent', 'bg-accent/5');
+  });
 </script>
